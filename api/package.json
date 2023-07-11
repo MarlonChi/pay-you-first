@@ -1,0 +1,8 @@
+{
+  "name": "puf-api",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Marlon Chiodelli <marlonchiodelli@hotmail.com>",
+  "license": "MIT",
+  "private": true
+}
