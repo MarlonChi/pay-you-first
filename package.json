@@ -9,8 +9,8 @@
     "fix": "run-s \"fix:* {@}\" --",
     "fix:lint": "eslint --fix --no-error-on-unmatched-pattern",
     "fix:format": "prettier --write",
-    "format": "yarn fix:format 'src/**/*.(js|ts|md|json)'",
-    "lint": "yarn fix:lint src/**/*.{js,ts,md,json}"
+    "format": "yarn fix:format 'api/src/**/*.(js|ts|md|json)'",
+    "lint": "yarn fix:lint api/src/**/*.{js,ts,md,json}"
   },
   "commitlint": {
     "extends": [
