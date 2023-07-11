@@ -1,0 +1,27 @@
+{
+  "name": "pay-you-first",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Marlon Chiodelli <marlonchiodelli@hotmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts" : {
+    "fix": "echo 123"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "./src/**/*.{js,ts,md,json}" : [
+      "yarn fix"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3"
+  }
+}
