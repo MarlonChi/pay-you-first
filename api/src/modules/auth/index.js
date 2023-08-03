@@ -9,13 +9,6 @@ export const login = async ctx => {
     const [email, password] = decodeBasicToken(
       ctx.request.headers.authorization
     );
-  } catch (err) {
-    ctx.status(400);
-    console.log(err);
-    return;
-  }
-
-  try {
     const user = await prisma.user.findUnique({
       where: {
         email,
@@ -34,6 +27,12 @@ export const login = async ctx => {
     ctx.body = { user, token };
   } catch (err) {
     console.log(err);
+
+    if (err.custom) {
+      ctx.status = 400;
+      return;
+    }
+
     ctx.status = 500;
     ctx.body = 'Ops! Algo deu errado, tente novamente.';
     return;

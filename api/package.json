@@ -9,7 +9,7 @@
     "prebuild": "rm -Rf ./dist",
     "build": "babel src --extensions \".js\" --ignore \"*.spec.js,*test.js\" --out-dir dist --copy-files",
     "dev": "nodemon --exec babel-node -- -r dotenv-safe/config src/index.js",
-    "jest": "yarn jest"
+    "test": "yarn jest"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.6",
