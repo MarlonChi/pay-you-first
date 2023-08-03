@@ -1,17 +1,19 @@
-import { prisma } from '~/data/index';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export const login = async ctx => {
-  const [type, credentials] = ctx.request.headers.authorization.split(' ');
+import { prisma } from '~/data/index';
+import { decodeBasicToken } from './services';
 
-  if (type !== 'Basic') {
-    ctx.status = 400;
+export const login = async ctx => {
+  try {
+    const [email, password] = decodeBasicToken(
+      ctx.request.headers.authorization
+    );
+  } catch (err) {
+    ctx.status(400);
+    console.log(err);
     return;
   }
-
-  const decoded = Buffer.from(credentials, 'base64').toString();
-  const [email, password] = decoded.split(':');
 
   try {
     const user = await prisma.user.findUnique({
