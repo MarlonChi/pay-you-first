@@ -1,16 +1,15 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import { prisma } from '~/data/index';
 import { decodeBasicToken } from './services';
-import './model';
+import * as model from './model';
 
 export const login = async ctx => {
   try {
     const [email, password] = decodeBasicToken(
       ctx.request.headers.authorization
     );
-    const user = await prisma.user.findUnique({
+    const user = await model.findUnique({
       where: {
         email,
         password,
@@ -22,14 +21,6 @@ export const login = async ctx => {
       ctx.body = 'Usuário não encontrado.';
       return;
     }
-
-    // const passwordEqual = await bcrypt.compare(password, user.password);
-
-    // if (!user || !passwordEqual) {
-    //   ctx.status = 404;
-    //   ctx.body = 'Usuário não encontrado.';
-    //   return;
-    // }
 
     const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET);
     ctx.body = { user, token };
@@ -49,7 +40,7 @@ export const login = async ctx => {
 
 export const list = async ctx => {
   try {
-    const users = await prisma.user.findMany({});
+    const users = await model.findMany({});
     ctx.body = users;
   } catch (err) {
     console.log(err);
@@ -67,7 +58,7 @@ export const create = async ctx => {
       saltRounds
     );
 
-    const user = await prisma.user.create({
+    const user = await model.create({
       data: {
         name: ctx.request.body.name,
         email: ctx.request.body.email,
@@ -89,7 +80,7 @@ export const update = async ctx => {
     password: ctx.request.body.password,
   };
   try {
-    const user = await prisma.user.update({
+    const user = await model.update({
       where: { id: ctx.params.id },
       data,
     });
@@ -102,7 +93,7 @@ export const update = async ctx => {
 
 export const remove = async ctx => {
   try {
-    await prisma.user.delete({
+    await model.remove({
       where: { id: ctx.params.id },
     });
     ctx.body = { id: ctx.params.id };
