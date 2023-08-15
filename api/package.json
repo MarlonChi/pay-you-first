@@ -32,6 +32,7 @@
     "jsonwebtoken": "^9.0.1",
     "koa": "^2.14.2",
     "koa-bodyparser": "^4.3.0",
-    "prisma": "^5.0.0"
+    "prisma": "^5.0.0",
+    "ramda": "^0.29.0"
   }
 }

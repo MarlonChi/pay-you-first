@@ -1,17 +1,6 @@
 import bcrypt from 'bcrypt';
+import { omit } from 'ramda';
 import { prisma } from '~/data';
-
-const omit = (keys, obj) =>
-  Object.keys(obj).reduce(
-    (acc, current) =>
-      keys.includes(current)
-        ? acc
-        : {
-            ...acc,
-            [current]: obj[current],
-          },
-    {}
-  );
 
 const passwordCheck = async (params, next) => {
   const { password: passwordPlainText, ...where } = params.args.where;
@@ -56,8 +45,6 @@ prisma.$use(async (params, next) => {
     : await next(params, next);
 
   if (result) {
-    // const { password, ...user } = result;
-
     return omit(['password'], result);
   }
 
