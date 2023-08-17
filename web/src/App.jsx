@@ -1,11 +1,15 @@
-import { styled } from "styled-components";
-
-const Button = styled.a`
-  background: ${(props) => props.theme.colors.green};
-`;
+import { ThemeProvider } from "styled-components";
+import Signup from "./pages/Signup";
+import theme from "./styles/Theme/theme";
+import { GlobalStyle } from "./styles/Theme/global";
 
 function App() {
-  return <Button>Hello world</Button>;
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Signup />
+    </ThemeProvider>
+  );
 }
 
 export default App;
