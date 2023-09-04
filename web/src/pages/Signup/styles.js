@@ -13,3 +13,9 @@ export const Form = styled.form`
   max-width: 38rem;
   width: 100%;
 `;
+
+export const Button = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
