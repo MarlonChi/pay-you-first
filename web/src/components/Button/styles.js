@@ -11,5 +11,10 @@ export const Button = styled.button`
     max-width: 18.7rem;
     width: 100%;
     cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   `}
 `;
