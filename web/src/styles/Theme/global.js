@@ -20,5 +20,9 @@ ${({ theme }) => css`
     background: ${theme.colors.raisinBlack};
     color: ${theme.colors.white};
   }
+
+  input {
+    font-size: 1.6rem;
+  }
 `}
 `;
