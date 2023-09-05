@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 export const Box = styled.div`
   display: flex;
@@ -11,14 +11,18 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  background: transparent;
-  border: 1px solid #fff;
-  border-radius: 20rem;
-  height: 4.5rem;
-  color: #fff;
-  padding: 1.2rem 0.8rem;
+  ${({ theme }) => css`
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 20rem;
+    height: 4.5rem;
+    color: #fff;
+    padding: 1.2rem 0.8rem;
 
-  &:disabled {
-    opacity: 0.5;
-  }
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    ${({ isInvalid }) => isInvalid && `border-color: ${theme.colors.red}`}
+  `}
 `;
